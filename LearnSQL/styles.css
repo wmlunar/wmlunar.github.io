@@ -1,0 +1,35 @@
+:root {
+  color-scheme: light dark;
+  font-family: Inter, "Segoe UI", "Microsoft YaHei", sans-serif;
+  line-height: 1.65;
+  --accent: #ff9500;
+  --surface: #101d31;
+}
+
+body {
+  margin: 0;
+  background: #081321;
+  color: #eef4ff;
+}
+
+main {
+  width: min(760px, calc(100% - 40px));
+  margin: 56px auto;
+  padding: 36px;
+  border: 1px solid #243853;
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 24px 70px rgb(0 0 0 / 28%);
+}
+
+h1, h2 { line-height: 1.25; }
+h1 { margin-top: 0; }
+h2 { margin-top: 2rem; }
+a { color: #ffb340; }
+.brand { color: var(--accent); font-weight: 750; letter-spacing: .02em; }
+.meta { color: #adbbcf; }
+footer { margin-top: 2.5rem; color: #adbbcf; font-size: .92rem; }
+
+@media (max-width: 640px) {
+  main { margin: 0; width: auto; min-height: 100vh; border: 0; border-radius: 0; padding: 28px 22px; }
+}
