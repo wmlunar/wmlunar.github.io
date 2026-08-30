@@ -62,15 +62,28 @@ $(function () {
         itemSelector: '.article'
     });
 
-    AOS.init({
-        easing: 'ease-in-out-sine',
-        duration: 700,
-        delay: 100
-    });
+    if (window.AOS) {
+        AOS.init({
+            easing: 'ease-in-out-sine',
+            duration: 700,
+            delay: 100
+        });
+    }
 
     /*文章内容详情的一些初始化特性*/
     let articleInit = function () {
-        $('#articleContent a').attr('target', '_blank');
+        $('#articleContent a').each(function () {
+            const href = this.getAttribute('href');
+            if (!href || href.startsWith('#')) {
+                return;
+            }
+
+            const targetUrl = new URL(href, window.location.href);
+            if (targetUrl.origin !== window.location.origin) {
+                this.setAttribute('target', '_blank');
+                this.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
 
         $('#articleContent img').each(function () {
             let imgPath = $(this).attr('src');
@@ -105,9 +118,7 @@ $(function () {
             // 启用字幕
             subHtmlSelectorRelative: true
         });
-        $(document).find('img[data-original]').each(function(){
-            $(this).parent().attr("href", $(this).attr("data-original"));
-        });
+
         // progress bar init
         const progressElement = window.document.querySelector('.progress-bar');
         if (progressElement) {
@@ -168,4 +179,7 @@ $(function () {
                 $('.m-nav-item.m-nav-show').removeClass('m-nav-show');
             }
     });
+
+    // 初始化加载 tooltipped.
+    $('.tooltipped').tooltip();
 });
