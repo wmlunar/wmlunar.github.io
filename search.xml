@@ -21,7 +21,7 @@ input code&lt;script>alert(1)&lt;/script>
 input code&lt;/textarea>&lt;script>alert(1)&lt;/script>
 
 解释
-文本框标签中无法弹窗，所以闭合”“标签。
+文本框标签中无法弹窗，所以先闭合 &lt;textarea&gt; 标签。
 
 运行截图0x02server codefunction render (input) &#123;
   return '&lt;input type="name" value="' + input + '">'
