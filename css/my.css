@@ -2,6 +2,9 @@
     color-scheme: light dark;
     --wm-accent: #176b55;
     --wm-accent-strong: #0f513f;
+    --wm-brand-start: #821dce;
+    --wm-brand-end: #0ac75f;
+    --wm-brand-gradient: linear-gradient(to right, var(--wm-brand-start) 0%, var(--wm-brand-end) 100%);
     --wm-bg: #f3f6f5;
     --wm-surface: #ffffff;
     --wm-surface-muted: #e8efec;
@@ -56,6 +59,18 @@ input:focus-visible,
 .bg-color {
     background-color: var(--wm-accent-strong);
     background-image: linear-gradient(135deg, var(--wm-accent) 0%, var(--wm-accent-strong) 100%);
+}
+
+header nav.bg-color:not(.nav-transparent),
+header .mobile-head.bg-color,
+footer.page-footer.bg-color {
+    background-color: var(--wm-brand-start);
+    background-image: var(--wm-brand-gradient);
+}
+
+header nav.bg-color:not(.nav-transparent),
+footer.page-footer.bg-color {
+    text-shadow: 0 1px 2px rgba(18, 24, 21, 0.35);
 }
 
 .text-color,
@@ -127,14 +142,8 @@ header .menus_item_child {
     min-height: 100dvh;
 }
 
-.bg-cover::before,
-.bg-cover::after,
 .carousel-post::before {
     background: linear-gradient(180deg, rgba(10, 24, 20, 0.2), rgba(10, 24, 20, 0.66));
-}
-
-.bg-cover::after {
-    animation: none !important;
 }
 
 .bg-cover .brand {
