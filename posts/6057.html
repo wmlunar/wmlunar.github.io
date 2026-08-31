@@ -532,9 +532,9 @@
 <ul>
 <li><p>过滤了圆括号和反引号。</p>
 </li>
-<li><p>“<svg>“标签中可以直接执行HTML实体字符。</p>
+<li><p><code>&lt;svg&gt;</code> 标签中可以直接执行 HTML 实体字符。</p>
 </li>
-<li><p>或者”<iframe>“标签的srcdoc里面的内容可以直接在HTML中显示出来。</p>
+<li><p>或者 <code>&lt;iframe&gt;</code> 标签的 <code>srcdoc</code> 里面的内容可以直接在 HTML 中显示出来。</p>
 </li>
 </ul>
 </blockquote>
@@ -547,7 +547,7 @@
 
 <h4 id="解释-5"><a href="#解释-5" class="headerlink" title="解释"></a>解释</h4><blockquote>
 <p>将–&gt;替换成表情，并且输入的内容在注释中输出。</p>
-<p>HTML两种注释方法：<!--注释-->  &lt;!–注释–!&gt;  这里我们可以用对称感叹号的方法注释。</p>
+<p>HTML 有两种注释方法：<code>&lt;!--注释--&gt;</code> 和 <code>&lt;!--注释--!&gt;</code>，这里可以用对称感叹号的方法注释。</p>
 </blockquote>
 <h4 id="运行结果-2"><a href="#运行结果-2" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x06"><a href="#0x06" class="headerlink" title="0x06"></a>0x06</h3><h4 id="server-code-6"><a href="#server-code-6" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
   input = input.replace(/auto|on.*=|&gt;/ig, &#39;_&#39;)
@@ -570,7 +570,7 @@
 <h4 id="input-code1"><a href="#input-code1" class="headerlink" title="input code1"></a>input code1</h4><pre><code class="language-js">&lt;body onload=&quot;alert(1)&quot;
 </code></pre>
 <h4 id="解释1"><a href="#解释1" class="headerlink" title="解释1"></a>解释1</h4><blockquote>
-<p>将以&lt;开头 &gt;结尾，并且忽略大小写的字符替换成空。</p>
+<p>将以 <code>&lt;</code> 开头、<code>&gt;</code> 结尾并且忽略大小写的字符替换成空。</p>
 <p>可以利用浏览器的容错，去掉&gt;。</p>
 </blockquote>
 <h4 id="运行截图1"><a href="#运行截图1" class="headerlink" title="运行截图1"></a>运行截图1</h4><h4 id="input-code2"><a href="#input-code2" class="headerlink" title="input code2"></a>input code2</h4><pre><code class="language-js">&lt;svg/onload=alert(1)
@@ -587,7 +587,7 @@
 <h4 id="input-code-7"><a href="#input-code-7" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">&lt;/style &gt;&lt;script&gt;alert(1)&lt;/script&gt;
 </code></pre>
 <h4 id="解释-7"><a href="#解释-7" class="headerlink" title="解释"></a>解释</h4><blockquote>
-<p>将</style>替换成\u574F\u4EBA，利用换行绕过。</p>
+<p>将 <code>&lt;/style&gt;</code> 替换成 <code>\u574F\u4EBA</code>，利用换行绕过。</p>
 </blockquote>
 <h4 id="运行结果-5"><a href="#运行结果-5" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x09"><a href="#0x09" class="headerlink" title="0x09"></a>0x09</h3><h4 id="server-code-9"><a href="#server-code-9" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
   let domainRe = /^https?:\/\/www\.segmentfault\.com/
@@ -622,7 +622,7 @@
 <h4 id="input-code-9"><a href="#input-code-9" class="headerlink" title="input code"></a>input code</h4><pre><code class="language-js">https://www.segmentfault.com.wmcoder.site/j.js
 </code></pre>
 <h4 id="解释-9"><a href="#解释-9" class="headerlink" title="解释"></a>解释</h4><blockquote>
-<p>对很多符号进行了转义，例如&amp; ‘ “ &lt; &gt; &#x2F;  都转义成了html实体编码，html实体编码在html标签的属性中可以直接进行解析。并且匹配了以<a href="https://www.segmentfault.com开头的url.当我们访问/" target="_blank" rel="noopener">https://www.segmentfault.com开头的url。当我们访问</a> <a href="https://www.baidu.com@www.sina.com/" target="_blank" rel="noopener">https://www.baidu.com@www.sina.com</a> 的时候我们实际访问的是 <a href="https://www.sina,com./" target="_blank" rel="noopener">https://www.sina,com。</a> 所以这里我们可以用指定的url开头，但是用@符号来执行自己的js，在这个js中有弹窗的代码。</p>
+<p>对很多符号进行了转义，例如 <code>&amp;</code>、<code>&#39;</code>、<code>&quot;</code>、<code>&lt;</code>、<code>&gt;</code>、<code>/</code> 都转义成了 HTML 实体编码，HTML 实体编码在 HTML 标签的属性中可以直接进行解析。并且匹配了以 <a href="https://www.segmentfault.com/" target="_blank" rel="noopener">https://www.segmentfault.com</a> 开头的 URL。当我们访问 <a href="https://www.baidu.com@www.sina.com/" target="_blank" rel="noopener">https://www.baidu.com@www.sina.com</a> 的时候，实际访问的是 <a href="https://www.sina,com.所以这里可以用指定的/" target="_blank" rel="noopener">https://www.sina,com。所以这里可以用指定的</a> URL 开头，再用 <code>@</code> 符号执行自己的 JavaScript，其中包含弹窗代码。</p>
 </blockquote>
 <h4 id="运行结果-7"><a href="#运行结果-7" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0B"><a href="#0x0B" class="headerlink" title="0x0B"></a>0x0B</h3><h4 id="server-code-11"><a href="#server-code-11" class="headerlink" title="server code"></a>server code</h4><pre><code class="language-js">function render (input) &amp;#123;
   input = input.toUpperCase()
@@ -661,7 +661,7 @@
 <span class="token operator">--</span><span class="token operator">></span></code></pre>
 
 <h4 id="解释-12"><a href="#解释-12" class="headerlink" title="解释"></a>解释</h4><blockquote>
-<p>将符号 &lt; &#x2F; “ ‘ 替换成空，并且输入的内容是注释，这里可以用换行绕过。并且用html的注释符 –&gt; 注释掉后面的单引号和圆括号。</p>
+<p>将符号 <code>&lt;</code>、<code>/</code>、<code>&quot;</code>、<code>&#39;</code> 替换成空，并且输入的内容是注释，这里可以用换行绕过。再用 HTML 注释符 <code>--&gt;</code> 注释掉后面的单引号和圆括号。</p>
 </blockquote>
 <h4 id="运行结果-10"><a href="#运行结果-10" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x0E"><a href="#0x0E" class="headerlink" title="0x0E"></a>0x0E</h3><h4 id="server-code-14"><a href="#server-code-14" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   input <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">&lt;([a-zA-Z])</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">'&lt;_$1'</span><span class="token punctuation">)</span>
@@ -690,7 +690,7 @@
 <h4 id="input-code-14"><a href="#input-code-14" class="headerlink" title="input code"></a>input code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token string">');alert('</span><span class="token number">1</span></code></pre>
 
 <h4 id="解释-14"><a href="#解释-14" class="headerlink" title="解释"></a>解释</h4><blockquote>
-<p>对字符 &amp; ‘ “ &lt; &gt; &#x2F; 进行html编码，输入的内容在img标签中，所以编码没有影响。内容在console.error中，我们可以闭合console.error，并且在onerror属性中添加一个alert。</p>
+<p>对字符 <code>&amp;</code>、<code>&#39;</code>、<code>&quot;</code>、<code>&lt;</code>、<code>&gt;</code>、<code>/</code> 进行 HTML 编码。输入内容在 <code>img</code> 标签中，所以编码没有影响。内容在 <code>console.error</code> 中，可以闭合 <code>console.error</code>，并在 <code>onerror</code> 属性中添加一个 <code>alert</code>。</p>
 </blockquote>
 <h4 id="运行结果-12"><a href="#运行结果-12" class="headerlink" title="运行结果"></a>运行结果</h4><h3 id="0x10"><a href="#0x10" class="headerlink" title="0x10"></a>0x10</h3><h4 id="server-code-16"><a href="#server-code-16" class="headerlink" title="server code"></a>server code</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">render</span> <span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
