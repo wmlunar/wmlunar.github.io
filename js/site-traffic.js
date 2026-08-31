@@ -7,9 +7,11 @@
     var timeoutId;
 
     function elementsFor(metric) {
+        var container = document.getElementById('busuanzi_container_' + metric);
         return {
-            container: document.getElementById('busuanzi_container_' + metric),
-            value: document.getElementById('busuanzi_value_' + metric)
+            container: container,
+            value: document.getElementById('busuanzi_value_' + metric),
+            base: Number(container && container.getAttribute('data-base')) || 0
         };
     }
 
@@ -43,7 +45,7 @@
                 var elements = elementsFor(metric);
                 var value = Number(data && data[metric]);
                 if (!elements.value || !elements.container) return;
-                elements.value.textContent = Number.isFinite(value) ? value.toLocaleString('zh-CN') : '--';
+                elements.value.textContent = Number.isFinite(value) ? (elements.base + value).toLocaleString('zh-CN') : '--';
                 elements.container.style.display = 'inline';
             });
             cleanup();
