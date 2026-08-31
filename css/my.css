@@ -146,6 +146,11 @@ header .menus_item_child {
     background: linear-gradient(180deg, rgba(10, 24, 20, 0.2), rgba(10, 24, 20, 0.66));
 }
 
+.bg-cover::after {
+    animation: none !important;
+    background: linear-gradient(180deg, rgba(8, 12, 18, 0.16), rgba(8, 12, 18, 0.38));
+}
+
 .bg-cover .brand {
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.42);
 }
